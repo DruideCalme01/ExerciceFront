@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function ContactForm({ AddContact }) {
+function ContactForm({ AddContact, UpdateContact, editingContact, setEditingContact }) {
     const [Data, setData] = useState({
         prenom: '',
         nom: '',
@@ -8,17 +8,35 @@ function ContactForm({ AddContact }) {
         tel: ''
     });
 
+    useEffect(() => {
+        if (editingContact) {
+            setData(editingContact);
+        }else {
+            setData({
+                prenom: '',
+                nom: '',
+                email: '',
+                tel: ''
+            });
+        }
+    }, [editingContact]);
+
     const handleChange = (e) => {const { name, value } = e.target; setData({ ...Data, [name]: value })};
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        AddContact(Data);
+        if (editingContact) {      
+            UpdateContact(editingContact.id, Data);
+        } else {
+            AddContact(Data);
+        }
         setData({
             prenom: '',
             nom: '',
             email: '',
             tel: ''
         });
+        setEditingContact(null);
     };
 
     return (
@@ -58,7 +76,7 @@ function ContactForm({ AddContact }) {
             required
         />
         <button type="submit" className="btn-submit">
-            Ajouter contact
+            {editingContact ? 'Enregistrer' : 'Ajouter contact'}
         </button>
     </form>
 );

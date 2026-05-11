@@ -1,4 +1,4 @@
-function ContactItem({ contact, onDelete }) {
+function ContactItem({ contact, onDelete, onUpdate}) {
   return (
     <div className="contact-item">
         <h3>Contact : {contact.prenom} {contact.nom.toUpperCase()}</h3>
@@ -6,7 +6,7 @@ function ContactItem({ contact, onDelete }) {
         <p>Téléphone : {contact.tel}</p>
         
         <div className="btn-group">
-            <button className="btn-action btn-edit" onClick={() => alert('Bientôt !')}>
+            <button className="btn-action btn-edit" onClick={() => onUpdate(contact)}>
                 Modifier
             </button>
             <button className="btn-action btn-delete" onClick={() => onDelete(contact.id)}>

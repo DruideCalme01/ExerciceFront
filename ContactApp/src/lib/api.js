@@ -8,5 +8,15 @@ export const api = {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
+    }).then(res => res.json()),
+    put: (url, body) => fetch(`${BASE_URL}${url}`, {
+        method: 'PUT',
+        headers: {  
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(res => res.json()),
+    delete: (url) => fetch(`${BASE_URL}${url}`, {
+        method: 'DELETE'
     }).then(res => res.json())
 };

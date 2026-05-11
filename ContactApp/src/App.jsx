@@ -7,13 +7,22 @@ import { api } from './lib/api';
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [editingContact, setEditingContact] = useState(null);
 
-  const handleAddContact = (newContact) => {
-    setContacts([...contacts, { ...newContact, id: Date.now() }]);
+  const handleAddContact = async (newContact) => {
+    const createdContact = await api.post('/contacts', newContact)
+    setContacts([...contacts, createdContact]);
   }
 
-  const handleDeleteContact = (id) => {
+  const handleDeleteContact = async (id) => {
+    const deletedContacts = await api.delete(`/contacts/${id}`);
     setContacts(contacts.filter(contact => contact.id !== id));
+  }
+
+  const handleUpdateContact = async (id, updatedContact) => {
+    const updatedContacts = await api.put(`/contacts/${id}`, updatedContact)
+    setContacts(contacts.map(contact => contact.id === id ? { ...contact, ...updatedContacts } : contact));
+    setEditingContact(null);
   }
 
   const searchConcats = contacts.filter(contact => contact.prenom.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -28,9 +37,9 @@ function App() {
   return ( 
     <div>
       <h1>Gestionnaire de Contacts</h1>
-      <ContactForm AddContact={handleAddContact} />
+      <ContactForm AddContact={handleAddContact} UpdateContact={handleUpdateContact} editingContact={editingContact} setEditingContact={setEditingContact} />
       <input className="search-bar" type="text" placeholder="Rechercher un contact..." onChange={(e) => setSearchTerm(e.target.value)}/>
-      <ContactList contacts={triContact} onDelete={handleDeleteContact} />
+      <ContactList contacts={triContact} onDelete={handleDeleteContact} onUpdate={(contact) => setEditingContact(contact)}/>
     </div>
   )
 
