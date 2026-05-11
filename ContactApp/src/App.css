@@ -1,12 +1,35 @@
-/*CSS AJOUTER*/
 /* Container principal */
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 40px auto;
   padding: 20px;
-  background: #242424; /* Couleur sombre de Vite */
+  background: #242424;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  color: white;
+}
+
+/* Style de la Navigation */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.nav-link {
+  color: #646cff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #535bf2;
+  text-decoration: underline;
 }
 
 /* Style du Formulaire */
@@ -18,7 +41,6 @@
   margin: 0 auto 30px;
 }
 
-/* Style des Inputs */
 .input-field {
   padding: 12px 15px;
   border-radius: 8px;
@@ -26,28 +48,8 @@
   background: #1a1a1a;
   color: white;
   font-size: 14px;
-  transition: border-color 0.3s;
 }
 
-.input-field:focus {
-  outline: none;
-  border-color: #646cff; /* Le violet de Vite */
-}
-
-.search-bar {
-  display: block;        
-  width: 100%;           
-  max-width: 600px;      
-  margin: 0 auto 25px;   
-  padding: 12px 15px;
-  box-sizing: border-box; 
-  border-radius: 8px;
-  border: 1px solid #444;
-  background: #1a1a1a;
-  color: white;
-}
-
-/* Le Bouton Ajouter */
 .btn-submit {
   grid-column: span 2; 
   padding: 12px;
@@ -59,69 +61,54 @@
   cursor: pointer;
 }
 
-.btn-submit:hover {
-  background-color: #535bf2;
+/* Barre de recherche */
+.search-bar {
+  display: block;        
+  width: 100%;           
+  max-width: 100%;      
+  margin: 0 auto 25px;   
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: white;
 }
 
-/* Message "Aucun contact" */
-.no-contact {
-  color: #888;
-  text-align: center;
-  font-style: italic;
-}
-
+/* LISTE DE CONTACTS */
 .contact-list-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  display: flex;
+  flex-direction: column; 
   gap: 20px; 
-  padding: 20px;
-  margin-top: 20px;
+  padding: 10px;
 }
 
 .contact-item {
   background: #2a2a2a;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Groupe de boutons */
 .btn-group {
   display: flex;
   gap: 10px;
   margin-top: 15px;
-  align-items: center;
+  justify-content: center;
 }
 
-/* Style commun aux boutons d'action */
 .btn-action {
   padding: 8px 16px;
   border: none;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
-  font-size: 14px;
 }
 
-/* Bouton Modifier (Orange/Jaune) */
-.btn-edit {
-  background-color: #ff9800;
-  color: #000;
-}
-.btn-edit:hover {
-  background-color: #e68900;
-}
-
-/* Bouton Supprimer (Rouge) */
-.btn-delete {
-  background-color: #f44336;
-  color: white;
-}
-.btn-delete:hover {
-  background-color: #d32f2f;
-}
+.btn-edit { background-color: #ff9800; color: #000; }
+.btn-delete { background-color: #f44336; color: white; }

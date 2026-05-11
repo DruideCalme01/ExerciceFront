@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Routes, Route, useNavigate, Link } from 'react-router-dom' // Ajoute ces imports
 import ContactForm from './components/ContactForm'
 import ContactList from './components/ContactList'
 import './App.css'
@@ -8,41 +9,78 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [editingContact, setEditingContact] = useState(null);
+  const navigate = useNavigate();
 
   const handleAddContact = async (newContact) => {
     const createdContact = await api.post('/contacts', newContact)
     setContacts([...contacts, createdContact]);
+    navigate("/");
   }
 
   const handleDeleteContact = async (id) => {
-    const deletedContacts = await api.delete(`/contacts/${id}`);
+    await api.delete(`/contacts/${id}`);
     setContacts(contacts.filter(contact => contact.id !== id));
   }
 
   const handleUpdateContact = async (id, updatedContact) => {
-    const updatedContacts = await api.put(`/contacts/${id}`, updatedContact)
-    setContacts(contacts.map(contact => contact.id === id ? { ...contact, ...updatedContacts } : contact));
+    const response = await api.put(`/contacts/${id}`, updatedContact)
+    setContacts(contacts.map(contact => contact.id === id ? response : contact));
     setEditingContact(null);
+    navigate("/"); 
   }
 
-  const searchConcats = contacts.filter(contact => contact.prenom.toLowerCase().includes(searchTerm.toLowerCase()))
-  || contacts.filter(contact => contact.nom.toLowerCase().includes(searchTerm.toLowerCase()));
+  const searchConcats = contacts.filter(contact => 
+    contact.prenom.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    contact.nom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const triContact = [...searchConcats].sort((a, b) => a.nom.localeCompare(b.nom));
+
 
   useEffect(() => {
     api.get('/contacts').then(setContacts);
   }, []);
 
   return ( 
-    <div>
+    <div className="container">
+      <nav className="navbar">
+        <Link to="/" className="nav-link">Liste de Contacts</Link>
+        <Link to="/formulaire" className="nav-link" onClick={() => setEditingContact(null)}>Ajouter Contact</Link>
+      </nav>
+
       <h1>Gestionnaire de Contacts</h1>
-      <ContactForm AddContact={handleAddContact} UpdateContact={handleUpdateContact} editingContact={editingContact} setEditingContact={setEditingContact} />
-      <input className="search-bar" type="text" placeholder="Rechercher un contact..." onChange={(e) => setSearchTerm(e.target.value)}/>
-      <ContactList contacts={triContact} onDelete={handleDeleteContact} onUpdate={(contact) => {
-        setEditingContact(contact);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }}/>
+
+      <Routes>
+        {/* PAGE ACCUEIL */}
+        <Route path="/" element={
+          <>
+            <input 
+              className="search-bar" 
+              type="text" 
+              placeholder="Rechercher un contact..." 
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <ContactList 
+              contacts={triContact} 
+              onDelete={handleDeleteContact} 
+              onUpdate={(contact) => {
+                setEditingContact(contact);
+                navigate("/formulaire"); 
+              }}
+            />
+          </>
+        } />
+
+        {/* PAGE FORMULAIRE */}
+        <Route path="/formulaire" element={
+          <ContactForm 
+            AddContact={handleAddContact} 
+            UpdateContact={handleUpdateContact} 
+            editingContact={editingContact} 
+            setEditingContact={setEditingContact} 
+          />
+        } />
+      </Routes>
     </div>
   )
 
