@@ -1,4 +1,4 @@
-# Travaux Pratiques React - [Ton Nom]
+# Travaux Pratiques React - Benjamin CHASSIER
 
 Ce dépôt regroupe mes projets réalisés en cours.
 
