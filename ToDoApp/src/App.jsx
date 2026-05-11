@@ -23,7 +23,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className='container'>
       <h1>Ma Todo List</h1>
       <TodoForm AddTask={addTask} />
       <TodoList 

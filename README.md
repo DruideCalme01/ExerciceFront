@@ -5,6 +5,7 @@ Ce dépôt regroupe mes projets réalisés en cours.
 ## 1. To-Do List
 - Gestion des tâches simples (Ajout / Suppression).
 - Utilisation du `useState`.
+- Design sur les tâches avec checkbox, changement de couleur 
 
 ## 2. Gestionnaire de Contacts
 - Formulaire complet avec 4 champs.

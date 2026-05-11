@@ -1,15 +1,16 @@
 function TodoItem({ task, ClearTask, TrueTask}) {
   return (
-    <li style={{display:"flex", alignItems:"center", margin:"10px"}}>
+    <li className="todo-item">
         <input
-            type="checkbox" checked={task.completed} onChange={TrueTask}
-            style={{marginRight:"10px"}}
+            type="checkbox" 
+            checked={task.completed} 
+            onChange={TrueTask}
+            className="todo-checkbox"
         />
-        <span 
-            style={{color: task.completed ? 'green' : 'red', marginRight:"10px", flex:1}}>
+        <span className={`todo-text ${task.completed ? 'completed' : ''}`}>
             {task.text}
         </span>
-        <button onClick={ClearTask}>Supprimer</button>
+        <button onClick={ClearTask} className="btn-delete">Supprimer</button>
     </li>
   )
 }
