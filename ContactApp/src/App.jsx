@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ContactForm from './components/ContactForm'
 import ContactList from './components/ContactList'
 import './App.css'
+import { api } from './lib/api';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -19,6 +20,10 @@ function App() {
   || contacts.filter(contact => contact.nom.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const triContact = [...searchConcats].sort((a, b) => a.nom.localeCompare(b.nom));
+
+  useEffect(() => {
+    api.get('/contacts').then(setContacts);
+  }, []);
 
   return ( 
     <div>
