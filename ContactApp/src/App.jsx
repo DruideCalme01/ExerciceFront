@@ -39,7 +39,10 @@ function App() {
       <h1>Gestionnaire de Contacts</h1>
       <ContactForm AddContact={handleAddContact} UpdateContact={handleUpdateContact} editingContact={editingContact} setEditingContact={setEditingContact} />
       <input className="search-bar" type="text" placeholder="Rechercher un contact..." onChange={(e) => setSearchTerm(e.target.value)}/>
-      <ContactList contacts={triContact} onDelete={handleDeleteContact} onUpdate={(contact) => setEditingContact(contact)}/>
+      <ContactList contacts={triContact} onDelete={handleDeleteContact} onUpdate={(contact) => {
+        setEditingContact(contact);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }}/>
     </div>
   )
 
