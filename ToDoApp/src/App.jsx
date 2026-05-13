@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 import './App.css'
 
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const { user } = useAuth();
