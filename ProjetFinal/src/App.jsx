@@ -12,7 +12,6 @@ import ArticleDetail from './pages/ArticleDetail';
 import EditArticle from './pages/EditArticle';
 
 
-
 function App() {
   return (
     <>
