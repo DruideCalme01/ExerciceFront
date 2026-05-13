@@ -9,6 +9,7 @@ import MyArticles from './pages/MyArticles';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import ArticleDetail from './pages/ArticleDetail';
+import EditArticle from './pages/EditArticle';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/article/:id" element={<ArticleDetail />} />
+        <Route path="/edit/:id" element={<EditArticle />} />
         
         {/*Routes Privées*/}
         <Route path="/create-article" element={<CreateArticle />} />

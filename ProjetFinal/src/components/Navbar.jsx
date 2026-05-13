@@ -14,12 +14,12 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-link">
-                <Link to="/">MyBlog</Link>
+                <Link to="/">Acceuil</Link>
             
                 {user ? (
                     <>
                         <Link to="/my-articles">Mes Articles</Link>
-                        <Link to="/create">Créer Article</Link>
+                        <Link to="/create-article">Créer Article</Link>
                         <button onClick={handleLogout} className="btn-logout">Déconnexion</button>
                     </>
                 ) : (

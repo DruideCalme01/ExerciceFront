@@ -23,7 +23,7 @@ const MyArticles = () => {
                         </div>
                     ))
                 ) : (
-                    <p className="no-contact">Vous n'avez pas encore d'articles. <Link to="/create">Créez-en un maintenant !</Link></p>
+                    <p className="no-contact">Vous n'avez pas encore d'articles. <Link to="/create-article">Créez-en un maintenant !</Link></p>
                 )}        
             </div>
         </div>
