@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-function TodoForm({ AddTask }) {
+const TodoForm = ({ AddTask }) => {
     const [text, setText] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`Nouvelle tâche : ${text}`);
+        if (text.trim().length === 0) return;
         AddTask(text);
         setText('');
     };

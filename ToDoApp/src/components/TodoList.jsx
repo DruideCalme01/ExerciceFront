@@ -1,18 +1,23 @@
 import TodoItem from "./TodoItem"
 
-function TodoList({tasks, ClearTask, TrueTask}) {
+const TodoList = ({tasks, ClearTask, TrueTask}) => {
   return (
-    <div>
+    <div className="todo-container">
       <h1>Ma liste de tâches</h1>
-      <ul>
-        {tasks.map((task) => (
-            <TodoItem
-                task={task}
-                ClearTask={() => ClearTask(task.id)}
-                TrueTask={() => TrueTask(task.id)}
-            />
-        ))}
-      </ul>
+      <div className="todo-list">
+        {tasks.length === 0 ? (
+          <p className="empty-message">Pas de tâches pour l'instant</p>
+        ) : (
+          tasks.map((task) => (
+              <TodoItem
+                  key={task.id}
+                  task={task}
+                  ClearTask={() => ClearTask(task.id)}
+                  TrueTask={() => TrueTask(task.id)}
+              />
+          ))
+        )}
+      </div>
     </div>
   )
 }

@@ -75,7 +75,7 @@ function App() {
       </nav>
 
       <h1>Gestionnaire de Contacts</h1>
-      <div className="user-email">{user.email}</div>
+      <div className="user-email">{user?.email}</div>
 
       <Routes>
         {/* ROUTE PUBLIQUE */}

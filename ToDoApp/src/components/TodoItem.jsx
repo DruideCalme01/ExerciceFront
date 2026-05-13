@@ -3,8 +3,8 @@ function TodoItem({ task, ClearTask, TrueTask}) {
     <li className="todo-item">
         <input
             type="checkbox" 
-            checked={task.completed} 
-            onChange={TrueTask}
+            checked={task.completed || false} 
+            onChange={() => TrueTask(task.id)}
             className="todo-checkbox"
         />
         <span className={`todo-text ${task.completed ? 'completed' : ''}`}>
