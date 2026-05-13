@@ -1,35 +1,48 @@
-import { createContext, useState, useContext, useEffect, use } from "react";
+import { createContext, useContext,useState,useEffect } from "react";
+import{api} from '../lib/api';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
+        const token = localStorage.getItem('token');
+        const userEmail = localStorage.getItem('userEmail');
+        if (token) {
+            setUser({email: userEmail });
         }
         setLoading(false);
     }, []);
 
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData));
+    const login = async (email, password) => {
+        const response = await api.post('/login', { email, password });
+        const token = response.token;
+        if (token) {
+            localStorage.setItem('token', token);
+            localStorage.setItem('userEmail', response.email);
+            setUser({ email: response.email });
+            return true;
+        }
     };
 
     const logout = () => {
+        localStorage.removeItem('token');
         setUser(null);
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+    };
+
+    const register = async (email, password) => {
+        await api.post('/register', { email, password });
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
-            {!loading && children}
+        <AuthContext.Provider value={{ user, login, logout, loading, register }}>
+            {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+    return useContext(AuthContext);
+};

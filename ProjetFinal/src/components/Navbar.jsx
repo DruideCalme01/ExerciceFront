@@ -6,7 +6,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const { user, logout } = useAuth(); 
-    
+
 
     const handleLogout = () => {
     console.log("Déconnexion en cours...");
@@ -16,7 +16,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="nav-link">
+            <div className="nav-links">
                 <Link to="/">Acceuil</Link>
             
                 {user ? (

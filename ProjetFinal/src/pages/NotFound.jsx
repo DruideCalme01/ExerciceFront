@@ -7,7 +7,7 @@ const NotFound = () => {
             <p>
                 La page que vous recherchez n'existe pas. <br></br>
                 Il semble que vous vous soyez perdu dans le blog.
-            </p>
+            </p> <br />
             <Link to="/" className='btn-submit'>Retour à l'accueil</Link>
         </div>
     );

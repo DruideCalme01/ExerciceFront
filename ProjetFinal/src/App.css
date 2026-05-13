@@ -1,23 +1,38 @@
+/* --- Global & Container --- */
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.container, .home-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #fff;
+}
+
+/* --- Navbar --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 5%;
   background-color: #1a1a1a;
   border-bottom: 1px solid #333;
   margin-bottom: 2rem;
 }
 
-.nav-logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #646cff;
-  text-decoration: none;
-}
-
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 }
 
@@ -25,7 +40,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: 0.3s;
 }
 
 .nav-links a:hover {
@@ -36,65 +51,134 @@
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
 }
 
-.btn-logout:hover {
-  background-color: #d32f2f;
-}
-
-.home-container {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
+/* --- Grille d'articles (Accueil et Mes Articles) --- */
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
 }
 
+/* --- Cartes d'articles --- */
 .article-card {
-  background: #2a2a2a;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #444;
+  background: #1e1e1e;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #333;
+  text-align: left; /* Très important pour éviter le centrage bizarre */
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+  height: 100%
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  border-color: #646cff;
+}
+
+.article-card h2 {
   text-align: left;
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
 }
 
 .article-meta {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #888;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.btn-read {
+.article-content {
+  color: #bbb;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Boutons dans les cartes --- */
+.btn-read, .btn-submit {
   background: #646cff;
   color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.my-article-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2a2a2a;
-  padding: 15px 20px;
+  text-decoration: none;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #444;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  display: block;
+  margin-top: auto;
 }
 
-.my-article-item span {
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: #eee;
+}
+
+.btn-edit { background: #ffa000; color: #fff; }
+.btn-delete { background: #f44336; color: #fff; border: none; cursor: pointer; }
+
+/* --- Formulaires --- */
+.contact-form {
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #333;
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  color: #646cff !important;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  background: #121212;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.contact-form textarea {
+  min-height: 200px;
 }

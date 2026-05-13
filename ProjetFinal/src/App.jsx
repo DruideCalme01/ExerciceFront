@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -22,13 +22,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/article/:id" element={<ArticleDetail />} />
-        <Route path="/edit/:id" element={<EditArticle />} />
+        
         
         {/*Routes Privées*/}
-        <Route path="/create-article" element={<CreateArticle />} />
-        <Route path="/my-articles" element={<MyArticles />} />
+        <Route path="/create-article" element={
+          <ProtectedRoute>
+            <CreateArticle />
+          </ProtectedRoute>
+        } />
+        <Route path="/my-articles" element={
+          <ProtectedRoute>
+            <MyArticles />
+          </ProtectedRoute>
+        } />
+        <Route path="/edit/:id" element={
+          <ProtectedRoute>
+            <EditArticle />
+          </ProtectedRoute>
+        } />
 
         {/*Route 404*/}
         <Route path="*" element={<NotFound />} />

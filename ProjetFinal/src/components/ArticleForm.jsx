@@ -17,31 +17,27 @@ const ArticleForm = ({ onSubmit, initialData, buttonlabel }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-                <label>Titre de l'article</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                    className="input-field"
-                />
-            </div>
-            <div className="form-group">
-                <label>Contenu de l'article</label>
-                <textarea
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    required
-                    className="input-field"
-                />
-            </div>
-            <button type="submit" className="btn-submit">
-                {buttonlabel}
-            </button>
-        </form>
-    );
+  <form onSubmit={handleSubmit} className="contact-form">
+    <div className="form-group">
+      <label>Titre de l'article</label>
+      <input 
+        type="text" 
+        value={title} 
+        onChange={(e) => setTitle(e.target.value)} 
+        placeholder="Titre de l'article..." 
+      />
+    </div>
+    <div className="form-group">
+      <label>Contenu de l'article</label>
+      <textarea 
+        value={content} 
+        onChange={(e) => setContent(e.target.value)} 
+        placeholder="Contenu de l'article..." 
+      />
+    </div>
+    <button type="submit" className="btn-submit">{buttonlabel}</button>
+  </form>
+);
 }
 
 export default ArticleForm;

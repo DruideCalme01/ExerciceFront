@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import ArticleForm from "../components/ArticleForm";
-
+import { api } from "../lib/api";
 
 const CreateArticle = () => {
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Article créé :", { title, content });
-        navigate("/");
+    const handleSubmit = async (data) => {
+        try {
+            await api.post('/articles', data);
+            navigate("/");
+        } catch (error) {
+            console.error("Erreur lors de la création de l'article :", error);
+        }
     };
 
     return (

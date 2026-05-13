@@ -1,10 +1,45 @@
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      alert("Email ou mot de passe incorrect");
+    }
+  };
+
   return (
     <div className="container">
-      <h2>Page de Connexion</h2>
-      <p>(Formulaire à venir après la phase Front)</p>
+      <h2>Connexion</h2>
+      <form onSubmit={handleSubmit} className="contact-form">
+        <input 
+          type="email" 
+          placeholder="Email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+        />
+        <input 
+          type="password" 
+          placeholder="Mot de passe" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required 
+        />
+        <button type="submit" className="btn-submit">Se connecter</button>
+      </form>
     </div>
   );
 };
 
-export default Login; // C'est cette ligne qui règle ton erreur !
+export default Login;
