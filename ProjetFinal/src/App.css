@@ -71,7 +71,7 @@ h1, h2 {
   padding: 25px;
   border-radius: 15px;
   border: 1px solid #333;
-  text-align: left; /* Très important pour éviter le centrage bizarre */
+  text-align: left; 
   display: flex;
   flex-direction: column;
   transition: 0.3s;
