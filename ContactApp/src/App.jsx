@@ -9,6 +9,7 @@ import { useAuth } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 
+
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
