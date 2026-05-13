@@ -1,13 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 
 const Navbar = () => {
     const navigate = useNavigate();
 
-    const user = false; // Simuler un utilisateur connecté ou non
+    const { user, logout } = useAuth(); 
+    
 
     const handleLogout = () => {
     console.log("Déconnexion en cours...");
+    logout();
     navigate('/login');
     };
 
